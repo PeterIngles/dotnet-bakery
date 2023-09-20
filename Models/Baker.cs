@@ -3,7 +3,6 @@ using System;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel
 
 
 namespace DotnetBakery.Models
@@ -20,7 +19,7 @@ namespace DotnetBakery.Models
     // if missing in the request body
     [Required]
     public string name {get; set;}
-    public string bakerType {get;set;}
+    public string bakerType {get; set;}
     }
 }
 
