@@ -31,6 +31,33 @@ namespace DotnetBakery.Controllers
             // Look ma, no SQL queries!
             return _context.Bakers;
         }
+        // GET /api/bakers/:id
+        [HttpGet("{id}")]
+        public ActionResult<Baker> GetById(int id)
+        {
+            Baker bakerWeDesire = _context.Bakers
+            .SingleOrDefault(baker => baker.id == id);
 
+            if (bakerWeDesire is null)
+            {
+                return NotFound();
+            }
+            return bakerWeDesire;
+        }
+
+        [HttpPost]
+        public Baker CreateBaker(Baker newBaker)
+        {
+            // Two Step process
+            // 1. We try to create a baker instance, using the data
+            // that got sent in the POST request.
+
+            _context.Add(newBaker);
+            // 2. If step 1 works, then we "save the new baker in our
+            // Bakers table
+            _context.SaveChanges();
+
+            return newBaker;
+        }
     }
 }
